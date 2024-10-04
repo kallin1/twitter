@@ -1,4 +1,4 @@
-package board.controller;
+package tweets.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

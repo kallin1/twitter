@@ -6,15 +6,15 @@
 </head>
 <body>
 <table>
-    <tr th:each="board: ${boardList}">
+    <tr th:each="tweets: ${tweetsList}">
         <!--게시글 id-->
-        <td th:text="${board.id}"></td>
+        <td th:text="${tweets.id}"></td>
         <!--작성 날짜-->
-        <td th:text="${#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${#temporals.format(tweets.tweetsCreatedTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
         <!--내용-->
-        <td th:text="${board.boardContents}"></td>
+        <td th:text="${tweets.Contents}"></td>
         <!--조회수-->
-        <td th:text="${board.boardHits}"></td>
+        <td th:text="${tweets.View}"></td>
     </tr>
 </table>
 </body>

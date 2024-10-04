@@ -1,6 +1,6 @@
-package board.entity;
+package tweets.entity;
 
-import board.dto.BoardDTO;
+import tweets.dto.TweetsDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,23 +9,23 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(schema ="twitter", name = "board_table")
-public class BoardEntity extends BaseEntity{
+@Table(schema ="twitter", name = "tweets_table")
+public class TweetsEntity extends BaseEntity{
     @Id //pk컬럼 지정. 필수
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increament
     private Long id;
     @Column(length = 20, nullable = false) //컬럼의 크기지정, not null
     //private String boardWriter;
     //@Column() //디폴트 크기 255, null가능
-    private String boardContents;
+    private String contents;
     @Column
-    private int boardHits;
+    private int tweetsHits;
 
 
-    public static BoardEntity toSaveEntity(BoardDTO boardDTO){
-        BoardEntity boardEntity = new BoardEntity();
-        boardEntity.setBoardContents(boardDTO.getBoardContents());
-        boardEntity.setBoardHits(0);
-        return boardEntity;
+    public static TweetsEntity toSaveEntity(TweetsDTO tweetsDTO){
+        TweetsEntity tweetsEntity = new TweetsEntity();
+        tweetsEntity.setContents(tweetsDTO.getContents());
+        tweetsEntity.setTweetsHits(0);
+        return tweetsEntity;
     }
 }

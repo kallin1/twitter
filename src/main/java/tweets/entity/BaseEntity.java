@@ -1,4 +1,4 @@
-package board.entity;
+package tweets.entity;
 
 
 import jakarta.persistence.Column;
