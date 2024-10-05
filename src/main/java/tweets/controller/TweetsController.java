@@ -21,7 +21,7 @@ public class TweetsController {
     private final TweetsService tweetsService;
 
     //게시글 작성
-    @GetMapping("/save")
+    @GetMapping//("/save")
     public String saveForm() {
         return "save";
     }
