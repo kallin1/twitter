@@ -29,12 +29,12 @@ public class TweetsController {
     @PostMapping
     public String save(@ModelAttribute TweetsDTO tweetsDTO) throws IOException {
         System.out.println("boardDTO = " + tweetsDTO);
-        tweetsService.save(tweetsDTO);
+        tweetsService.create(tweetsDTO);
         return "redirect:/tweets/"; // 글 작성 후 목록 페이지로 리다이렉트
     }
 
     //게시글 목록
-    @GetMapping("/")
+    @GetMapping("/home")
     public String findAll(Model model){
         //DB에서 전체 게시글 데이터를 가져와서 save.html에 보여준다
         List<TweetsDTO> tweetsDTOList = tweetsService.findAll();
