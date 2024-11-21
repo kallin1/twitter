@@ -20,10 +20,14 @@ public class TweetsService {
 
     //게시글 작성(저장)
     //DTO객체를 엔티티 객체로 옮겨담는다
+    /*
+
     public void create(TweetsDTO tweetsDTO){
-        TweetsEntity tweetsEntity = TweetsEntity.toSaveEntity(tweetsDTO);
+       TweetsEntity tweetsEntity = TweetsEntity.toSaveEntity(tweetsDTO);
         tweetsRepository.save(tweetsEntity);
     }
+     */
+
 
     //게시글 목록
     public List<TweetsDTO> findAll() {
