@@ -18,7 +18,7 @@ import java.util.List;
 public class HomeController {
     private final TweetsService tweetsService;
 
-    // 1. 게시글 목록 조회
+    // 홈화면에 트윗리스트 데이터 전달
     @GetMapping("/tweets/home")
     @ResponseBody
     //객체를 반환하여 API로 JSON형태를 넘겨줌
@@ -35,10 +35,6 @@ public class HomeController {
 
         return tweetsList;  // 이 객체는 JSON으로 변환되어 반환됨
     }
-
-    //@GetMapping("/home")
-    //public String home() { return "home"; }
-
 
 }
 

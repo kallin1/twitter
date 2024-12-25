@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-//DTO(Data Transfer Object), VO, Bean
+
+//데이터 전송 객체
 public class TweetsDTO {
 
     // 필드 선언

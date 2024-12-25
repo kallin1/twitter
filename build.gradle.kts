@@ -23,17 +23,23 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-mustache")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-mustache")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	compileOnly("org.projectlombok:lombok:1.18.24")
 	annotationProcessor("org.projectlombok:lombok:1.18.24")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	runtimeOnly("mysql:mysql-connector-java:8.0.33")
+	implementation("mysql:mysql-connector-java:8.0.33")
 	testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
-	implementation("java.xml.bind:jaxb-api")
+
+
+	// jaxb-api 의존성 추가
+	implementation ("javax.xml.bind:jaxb-api:2.3.1")
+
+	// JDK 9 이상에서 JAXB 관련 의존성
+	implementation ("org.glassfish.jaxb:jaxb-runtime:2.3.3")
 }
 
 tasks.withType<Test> {
@@ -51,6 +57,7 @@ sourceSets {
 		}
 	}
 }
+
 
 // 리액트 빌드 파일을 복사하는 작업 정의
 tasks.register<Copy>("copyReactBuildFiles") {
@@ -82,15 +89,19 @@ tasks.register<Exec>("buildReact") {
 	inputs.dir(frontendDir)  // 입력 디렉터리 설정
 	group = BasePlugin.BUILD_GROUP  // 그룹 설정
 
-	// OS에 따라 다른 명령어 실행
-	if (System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("windows")) {
-		commandLine("npm.cmd", "run-script", "build")
+	if (System.getProperty("os.name").lowercase(Locale.ROOT).contains("windows")) {
+		commandLine("npm.cmd", "run-script", "build");
 	} else {
-		commandLine("npm", "run-script", "build")
+		commandLine("npm", "run-script", "build");
 	}
 }
 
+
 // processResources 작업에 copyReactBuildFiles 작업을 의존성으로 추가
-tasks.named("processResources") {
-	dependsOn("copyReactBuildFiles")  // processResources 전에 copyReactBuildFiles 작업 실행
+tasks {
+	processResources{
+		dependsOn("copyReactBuildFiles")
+		duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
+	}
 }
+
